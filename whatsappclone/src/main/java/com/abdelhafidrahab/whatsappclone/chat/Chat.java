@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
@@ -30,6 +31,14 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "chats")
+@NamedQuery(
+    name = "ChatConstants.FIND_CHAT_BY_SENDER_ID",
+    query = "SELECT DISTINCT c FROM Chat c WHERE c.sender.id = :senderId OR c.receiver.id = :senderId ORDER BY createdDate DESC"
+)
+@NamedQuery(
+    name = "ChatConstants.FIND_CHAT_BY_SENDER_ID_AND_RECEIVER_ID",
+    query = "SELECT DISTINCT c FROM Chat c WHERE (c.sender.id = :senderId AND c.receiver.id = :receiverId) OR (c.sender.id = :receiverId AND c.receiver.id = :senderId)"
+)
 public class Chat extends BaseAuditingEntity {
 
     @Id
