@@ -2,6 +2,8 @@ package com.abdelhafidrahab.whatsappclone.message;
 
 import org.springframework.stereotype.Service;
 
+import com.abdelhafidrahab.whatsappclone.file.FileUtils;
+
 @Service
 public class MessageMapper {
     public MessageResponse toMessageResponse(Message message) {
@@ -13,7 +15,7 @@ public class MessageMapper {
             .type(message.getType())
             .state(message.getState())
             .createdAt(message.getCreatedDate())
-            // TODO read the meida file
+            .media(FileUtils.readFileFromLocation(message.getMediaFilePath()))
         .build();
     }
 }
