@@ -1,8 +1,8 @@
 spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/whatsapp_clone
-        username: ${POSTGRES_USER}
-        password: ${POSTGRES_PASSWORD}
+        username: username
+        password: 2591346870510943
     jpa:
         hibernate:
             ddl-auto: update
@@ -24,6 +24,9 @@ spring:
     servlet:
         multipart:
             max-file-size: 50MB
+
+springdoc:
+    default-produces-media-type: application/json
 
 application:
     file:
